@@ -24,7 +24,7 @@ public class Testing {
 	public void feedDatabse(String state, String city, String location, Date date, double pm10, double pm2dot5, double no2,
 			double o3, double co, double so2, double nh3, double pb, double AQI) {
 		String str = "select count(*) from aqitable where stateid = ? and cityid = ? and locationid = ? and date = ?";
-		int check = jdbcTemplateObject.queryForObject(str, new Object[] {str,state,city,location,date}, Integer.class);
+		int check = jdbcTemplateObject.queryForObject(str, new Object[] {state,city,location,date}, Integer.class);
 		System.out.println("check: "+check);
 		if(check == 0)
 		{
