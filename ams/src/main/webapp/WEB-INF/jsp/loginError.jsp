@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" isELIgnored="false"%>
-
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>  
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -37,11 +37,10 @@
         </div>
       </nav>
           <div class="main-name">
-              <h1>SuccessFul Transaction.</h1>
+              <h1>Invalid Credentials!!! Please Try Again</h1>
               
               <div class="buttons">
-                  <a href = "form"><button class="error-button"> Add New Data</button></a>
-                <!--    <a href = "login"><button class="error-button">Login</button></a>  -->
+                  <a href = "homepage"><button class="error-button">Go To Login Page</button></a>
               </div>
           </div>
           

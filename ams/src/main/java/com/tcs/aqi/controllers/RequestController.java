@@ -105,7 +105,7 @@ public class RequestController {
 		if (check)
 			return "redirect:/loginIndex";
 		else
-			return "redirect:/loginError";
+			return "loginError";
 		
 	}
 	
