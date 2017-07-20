@@ -34,7 +34,7 @@
               <a class="nav-link" href="homepage">Home <span class="sr-only">(current)</span></a>
             </li>
           </ul>
-          <a href="#"><button class="btn-change7" type="submit">Username</button></a>
+          <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
           <a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a>
         </div>
       </nav>

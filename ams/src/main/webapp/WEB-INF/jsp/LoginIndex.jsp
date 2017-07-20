@@ -27,7 +27,7 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="navbar-brand" href="#" style="padding-left: 80px;">AMS</div>
-          <div class="navbar-brand"  style="padding-left: 80px;">Hello,User</div>
+          <div class="navbar-brand"  style="padding-left: 80px;">Hello,"${user.username}"</div>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -35,7 +35,7 @@
             </li>
           </ul>
           <a href="search"><button class="btn-change7" type="submit">Search</button></a>
-          <a href="#"><button class="btn-change8" type="button" >Logout</button></a>
+          <a href="logout"><button class="btn-change8" type="button" >Logout</button></a>
           <div class="modal fade" id="loginModal" role="dialog">
             <div class="modal-dialog modal-md">
             

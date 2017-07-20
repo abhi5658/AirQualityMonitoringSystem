@@ -54,9 +54,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	
-	<h1>"${userType}"</h1>
-	
+		
 	<c:url value="/search" var="actionUrl"/>
        
        <form:form action="${actionUrl}" modelAttribute="pollutant">

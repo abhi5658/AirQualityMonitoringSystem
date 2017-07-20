@@ -34,8 +34,18 @@
              <!--   <a class="nav-link" href="registerForm">Sign Up <span class="sr-only">(current)</span></a> -->
             </li>
           </ul>
-          <a href="registerForm"><button class="btn-change7" type="submit">Sign Up</button></a>
-          <a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Login</button></a>
+          
+          <c:if test="${empty userType}">
+              	<a href="registerForm"><button class="btn-change7" type="submit">Sign Up</button></a>
+           
+          	<a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Login</button></a>
+          </c:if>
+          <c:if test="${!empty userType}">
+          	<a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
+          	<a href="search"><button class="btn-change7" type="submit">Search</button></a>
+          	<c:url var="logout" value="/logout"/>
+        	<a href="${logout}"><button class="btn-change8" type="button">Logout</button></a>
+          </c:if>
           <div class="modal fade" id="loginModal" role="dialog">
             <div class="modal-dialog modal-md">
             

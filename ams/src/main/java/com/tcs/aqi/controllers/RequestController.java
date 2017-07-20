@@ -58,7 +58,7 @@ public class RequestController {
 		public String logOut(ModelMap model)
 		{
 			model.addAttribute("userType","");
-			model.addAttribute("user","");
+			model.addAttribute("user",new Admin());
 			
 			return "redirect:/";
 		}
@@ -82,7 +82,7 @@ public class RequestController {
 		if (check){
 			
 			model.addAttribute("userType","admin");
-			//model.addAttribute("user", adminDetail);
+			model.addAttribute("user", adminDetail);
 			return "redirect:/adminInput";	
 		}
 		else
@@ -96,14 +96,17 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/userLogin")
-	public String userLogin(@ModelAttribute("adminDetail") Admin adminDetail){
+	public String userLogin(@ModelAttribute("adminDetail") Admin adminDetail, ModelMap model){
 		
 		System.out.println(adminDetail.getUsername()+" "+adminDetail.getPassword());
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		Testing testing = (Testing)context.getBean("testing");
 		boolean check = testing.checkUser(adminDetail.getUsername(),adminDetail.getPassword());
-		if (check)
+		if (check){
+			model.addAttribute("userType","user");
+			model.addAttribute("user",adminDetail);
 			return "redirect:/loginIndex";
+		}
 		else
 			return "loginError";
 		
@@ -115,9 +118,14 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/search")
-	public ModelAndView search (){
+	public String search (ModelMap model){
 		
-		return new ModelAndView("OnSearch","command",new SCL());
+		if(!model.get("userType").equals("") && model.get("userType")!=null){
+			model.addAttribute("command",new SCL());
+			return "OnSearch";
+		}else
+			return "redirect:/";
+		
 	}
 	@RequestMapping(value="/processsearch")
 	public String onSearch(@ModelAttribute("scl")SCL scl,ModelMap model){
@@ -131,9 +139,17 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/addscl")
-	public ModelAndView addscl(){
+	public String addscl(ModelMap model){
 		
-		return new ModelAndView("AddSCL","command",new SCL());
+		String userType= (String)model.get("userType");
+		
+		System.out.println(userType);
+		if(userType!=null && userType.equals("admin")){
+			model.addAttribute("command",new SCL());
+			return "addSCL";
+		}
+		else
+			return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/processscl")
@@ -145,8 +161,13 @@ public class RequestController {
 		return  "SclSuccess";
 	}
 	@RequestMapping(value = "/registerForm")
-	public ModelAndView registrationForm(){
-		return new ModelAndView("RegistrationForm","command",new UserDetail());
+	public String registrationForm(ModelMap model){
+		
+		if(model.get("userType").equals("") || model.get("userType")==null){
+			model.addAttribute("command",new UserDetail());
+			return "RegistrationForm";
+		}else
+			return "redirect:/";
 	}
 	@RequestMapping(value = "/addUser")
 	public String addUser(@ModelAttribute("user_") UserDetail user_){
