@@ -4,7 +4,7 @@
 # Log file
 *.log
 /ams/.settings
-/ams/target/classes
+/ams/target
 
 # BlueJ files
 *.ctxt
