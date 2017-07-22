@@ -14,6 +14,22 @@
     <spring:url value="/resources/css/index.css" var="indexCSS" />
     <spring:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" var="bootstrapCSS" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+	
+		$.ajax({
+			url:"error",
+			
+			success: function(data){
+				if(data!=null && !data.equals(""))
+				alert(data);
+				else
+					alert("hdjkfk");
+			}
+		});
+	});
+	</script>
+    
     
     <link href="<c:url value="/resources/css/index.css"/>" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
@@ -27,7 +43,9 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="#" style="padding-left: 80px;">AMS</a>
-
+          <c:if test="${!empty userType}">
+		  	<div class="navbar-brand"  style="padding-left: 80px;">Hello,"${user.username}"</div>
+          </c:if>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -36,13 +54,23 @@
           </ul>
           
           <c:if test="${empty userType}">
-              	<a href="registerForm"><button class="btn-change7" type="submit">Sign Up</button></a>
-           
-          	<a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Login</button></a>
+              	<a href="registerForm"><button class="btn-change7" type="submit">Sign Up</button></a>  
+          		<a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Login</button></a>
           </c:if>
+          
           <c:if test="${!empty userType}">
-          	<a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
-          	<a href="search"><button class="btn-change7" type="submit">Search</button></a>
+          	
+          	
+          	
+          	<c:set var="userType" value="${userType}"/>
+          	<c:set var="user" value="user"/>
+          	<c:set var="admin" value="admin"/> 
+          	<c:if test="${userType eq  user}">
+              	<a href="search"><button class="btn-change7" type="submit">Search</button></a>
+          	</c:if>
+          	<c:if test="${userType eq  admin}">
+              	<a href="adminInput"><button class="btn-change7" type="submit">Manu</button></a>
+          	</c:if>
           	<c:url var="logout" value="/logout"/>
         	<a href="${logout}"><button class="btn-change8" type="button">Logout</button></a>
           </c:if>
