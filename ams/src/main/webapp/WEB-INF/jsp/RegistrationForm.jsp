@@ -37,7 +37,7 @@
             </li>
           </ul>
           
-          <a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Login</button></a>
+<!--           <a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Login</button></a> -->
         </div>
       </nav>
           <div class="main-name">
@@ -92,7 +92,7 @@
           </div>
         </div>
   <footer class="footer">
-    <p style="font-size: 40px;"><img src="<c:url  value = "/resources/images/tata.png"/>" style="width: 10%;"> CONSULTANCY SERVICES</p>
+<p style="font-size: 4vw;"><img src="<c:url value="/resources/images/tata.png" />" style="width: 13%;"> CONSULTANCY SERVICES</p>
     <p>Copyright @2017 Tata Consultancy Services</p>
   </footer>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->

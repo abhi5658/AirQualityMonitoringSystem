@@ -85,7 +85,7 @@
   </div>
 
   <footer class="footer">
-    <p style="font-size: 40px;"><img src="<c:url value="/resources/images/tata.png" />" style="width: 10%;"> CONSULTANCY SERVICES</p>
+<p style="font-size: 4vw;"><img src="<c:url value="/resources/images/tata.png" />" style="width: 13%;"> CONSULTANCY SERVICES</p>
     <p>Copyright @2017 Tata Contultancy Services</p>
   </footer>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->

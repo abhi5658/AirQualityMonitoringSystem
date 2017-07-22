@@ -72,7 +72,7 @@ select {
 .bg{
     background-image: url('../images/back2.jpg');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     height: 681px;
 
 }

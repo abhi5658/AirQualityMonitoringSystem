@@ -32,7 +32,7 @@
             </li>
           </ul>
           <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
-          <a href="search"><button class="btn-change7" type="submit">Search</button></a>
+<!--           <a href="search"><button class="btn-change7" type="submit">Search</button></a> -->
           <a href="logout"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a>
         </div>
       </nav>
@@ -43,12 +43,12 @@
               <div class="update">
                   <a href = "form"><button class="update-button">Update AQI</button><br></a>
                   <a href = "addscl"><button class="update-button">Add SCL</button><br></a>
-                <!--    <a href = ""><button class="update-button">Add Admin</button></a> -->
+                   <a href = "search"><button class="update-button">Search</button></a>
               </div>
           </div>
         </div>
   <footer class="footer">
-    <p style="font-size: 40px;"><img src="images/tata.png" style="width: 10%;"> CONSULTANCY SERVICES</p>
+    <p style="font-size: 4vw;"><img src="<c:url value="/resources/images/tata.png" />" style="width: 13%;"> CONSULTANCY SERVICES</p>
     <p>Copyright @2017 Tata Consultancy Services</p>
   </footer>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->

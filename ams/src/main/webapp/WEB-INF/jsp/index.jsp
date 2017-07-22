@@ -69,7 +69,7 @@
               	<a href="search"><button class="btn-change7" type="submit">Search</button></a>
           	</c:if>
           	<c:if test="${userType eq  admin}">
-              	<a href="adminInput"><button class="btn-change7" type="submit">Manu</button></a>
+              	<a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
           	</c:if>
           	<c:url var="logout" value="/logout"/>
         	<a href="${logout}"><button class="btn-change8" type="button">Logout</button></a>
@@ -105,7 +105,7 @@
                         <label for="inputPassword" class="sr-only">Password</label>
                         <form:input type="password" path = "password" id="inputPassword" class="form-control" placeholder="Password" name="password" required="true"/> 
                         <br>
-                        <a href="forgotpassword.php">Forgot Password?</a>
+                        <a href="#">Forgot Password?</a>
                         <input type="submit" value="Sign in">
                       </form:form> 
                     </div>
@@ -117,7 +117,7 @@
                         <label for="inputPassword" class="sr-only">Password</label>
                         <form:input type="password" path = "password" id="inputPassword" class="form-control" placeholder="Password" name="password" required="true"/> 
                         <br>
-                        <a href="forgotpassword.php">Forgot Password?</a>
+                        <a href="#">Forgot Password?</a>
                         <input type="submit" value="Sign in">
                       </form:form>                        
                     </div>
@@ -154,7 +154,7 @@
   </div>
 
   <footer class="footer">
-    <p style="font-size: 40px;"><img src="<c:url value="/resources/images/tata.png" />" style="width: 10%;"> CONSULTANCY SERVICES</p>
+    <p style="font-size: 4vw;"><img src="<c:url value="/resources/images/tata.png" />" style="width: 13%;"> CONSULTANCY SERVICES</p>
     <p>Copyright @2017 Tata Contultancy Services</p>
   </footer>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: ams Maven Webapp
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: Chopda
+Built-By: Abhishek
 Implementation-Vendor-Id: com.tcs.aqi
-Build-Jdk: 1.8.0_111
+Build-Jdk: 1.8.0_121
 Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
