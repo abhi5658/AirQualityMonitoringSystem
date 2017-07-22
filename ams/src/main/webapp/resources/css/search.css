@@ -33,9 +33,9 @@ select {
 
 .btn-change7{
     height: 30px;
-    width: 100%;
+    width: auto;
+    min-width: 70px;
     background: none;
-    margin-left: 20px;
     margin-top: 5px;
     border-radius: 5px;
     font-size: 0.9em;
@@ -54,7 +54,8 @@ select {
 }
 .btn-change8{
     height: 30px;
-    width: 70px;
+    width: auto;
+    min-width: 70px;
     background: none;
     margin-left: 20px;
     margin-top: 5px;
@@ -76,7 +77,7 @@ select {
 .bg{
     background-image: url('../images/back2.jpg');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     height: 681px;
 
 }
