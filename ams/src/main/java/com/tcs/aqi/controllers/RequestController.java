@@ -5,11 +5,14 @@ import java.time.LocalDate;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +22,7 @@ import com.tcs.aqi.beans.UserDetail;
 import com.tcs.aqi.database.Testing;
 import com.tcs.aqi.beans.Admin;
 
-@SessionAttributes({"user","userType"})
+@SessionAttributes({"user","userType","error"})
 @Scope("session")
 @Controller
 public class RequestController {	
@@ -31,6 +34,7 @@ public class RequestController {
 	 {
 		// ModelAndView model=new ModelAndView("index","command", new com.javatpoint.beans.Admin());
 		// session.setAttribute("userType","jimmy");
+		 modelM.addAttribute("jim","jimmy");
 		 modelM.addAttribute("pollutant",new Pollutant());
 		 modelM.addAttribute("command",new Admin());
 		 return "index";
@@ -41,6 +45,17 @@ public class RequestController {
 	 {
 		 return "redirect:/";
 	 }
+	 
+	 @RequestMapping(value="/error",method=RequestMethod.GET)
+	 public @ResponseBody ResponseEntity<String> geList(ModelMap model){
+	 	 	String message= (String) model.get("error");
+	 	 	System.out.println("inside error");
+	 	 	if(message!= null && !message.equals(""))
+	 	 		return new ResponseEntity<String>(message, HttpStatus.OK);
+	 	 	else
+	 	 		return new ResponseEntity<String>("", HttpStatus.OK);
+	 }
+	 
 	 @RequestMapping(value = "/form",method =  RequestMethod.GET)
 		public String showForm(ModelMap model)
 		{
@@ -96,17 +111,21 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/userLogin")
-	public String userLogin(@ModelAttribute("adminDetail") Admin adminDetail){
+	public String userLogin(@ModelAttribute("adminDetail") Admin adminDetail, ModelMap model){
 		
 		System.out.println(adminDetail.getUsername()+" "+adminDetail.getPassword());
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		Testing testing = (Testing)context.getBean("testing");
 		boolean check = testing.checkUser(adminDetail.getUsername(),adminDetail.getPassword());
-		if (check)
-			return "redirect:/loginIndex";
-		else
-			return "loginError";
-		
+		if (check){
+			model.addAttribute("userType","user");
+			model.addAttribute("user",adminDetail);
+			return "redirect:/";
+		}
+		else{
+			model.addAttribute("error","Invalid Credentials!!! Please Try Again");
+			return "redirect:/";
+		}
 	}
 	
 	@RequestMapping(value = "/loginIndex")
@@ -115,9 +134,14 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/search")
-	public ModelAndView search (){
+	public String search (ModelMap model){
 		
-		return new ModelAndView("OnSearch","command",new SCL());
+		if(!model.get("userType").equals("") && model.get("userType")!=null){
+			model.addAttribute("command",new SCL());
+			return "OnSearch";
+		}else
+			return "redirect:/";
+		
 	}
 	@RequestMapping(value="/processsearch")
 	public String onSearch(@ModelAttribute("scl")SCL scl,ModelMap model){
@@ -131,9 +155,17 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/addscl")
-	public ModelAndView addscl(){
+	public String addscl(ModelMap model){
 		
-		return new ModelAndView("AddSCL","command",new SCL());
+		String userType= (String)model.get("userType");
+		
+		System.out.println(userType);
+		if(userType!=null && userType.equals("admin")){
+			model.addAttribute("command",new SCL());
+			return "addSCL";
+		}
+		else
+			return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/processscl")
@@ -145,8 +177,14 @@ public class RequestController {
 		return  "SclSuccess";
 	}
 	@RequestMapping(value = "/registerForm")
-	public ModelAndView registrationForm(){
-		return new ModelAndView("RegistrationForm","command",new UserDetail());
+	public String registrationForm(ModelMap model){
+		
+		String str= (String)model.get("userType");
+		if(str==null || str.equals("") ){
+			model.addAttribute("command",new UserDetail());
+			return "RegistrationForm";
+		}else
+			return "redirect:/";
 	}
 	@RequestMapping(value = "/addUser")
 	public String addUser(@ModelAttribute("user_") UserDetail user_){
