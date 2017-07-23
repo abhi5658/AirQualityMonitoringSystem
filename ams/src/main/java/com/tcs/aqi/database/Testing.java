@@ -1,6 +1,7 @@
 package com.tcs.aqi.database;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.*;
 import javax.sql.DataSource;
 
@@ -100,5 +101,8 @@ public class Testing {
 			return true;
 		else
 			return false;
+	}
+	public void addCron(Date date,int value){
+		jdbcTemplateObject.update("insert into cronhere (date,value) values (?,?)",date,value);
 	}
 }
