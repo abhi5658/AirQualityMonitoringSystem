@@ -33,6 +33,7 @@
             </li>
           </ul>
           <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
+          <a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
           <a href="logout"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a> 
         </div>
       </nav>

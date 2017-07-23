@@ -3,10 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html> 
 	<head> 
-		<title>My first chart using FusionCharts Suite XT</title> 
+		<title>Pollution Chart</title> 
 		<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script> 
 		<script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js?cacheBust=56"></script> 
-		
+
 		<script type="text/javascript"> 
 			FusionCharts.ready(function(){
 				var fusioncharts = new FusionCharts({ 
@@ -71,8 +71,8 @@
 			</script> 
 		</head> 
 		<body> 
+			<a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
 			<div id="chart-container-for-conc">FusionCharts XT will load here!</div>
 			<div id="chart-container-for-AQI">FusionCharts XT will load here!</div> 
-			
 		</body> 
 	</html>

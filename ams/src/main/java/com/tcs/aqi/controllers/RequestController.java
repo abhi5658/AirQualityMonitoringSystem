@@ -162,7 +162,7 @@ public class RequestController {
 		System.out.println(userType);
 		if(userType!=null && userType.equals("admin")){
 			model.addAttribute("command",new SCL());
-			return "addSCL";
+			return "AddSCL";
 		}
 		else
 			return "redirect:/";

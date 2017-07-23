@@ -41,7 +41,7 @@
           </li>
         </ul>
         <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
-        <a href="search"><button class="btn-change7" type="submit">Search</button></a>
+        <a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
         <c:url var="logout" value="/logout"/>
         <a href="${logout}"><button class="btn-change8" type="button" >Logout</button></a>
           <div class="modal fade" id="loginModal" role="dialog">
@@ -194,7 +194,7 @@
     				
     			</div>
     			<div class="col-1">
-    				<label>pb</label>
+    				<label>Pb</label>
     			</div>
     			<div class="col-4">
     				<form:input path = "pb"/>
