@@ -22,7 +22,7 @@ import com.tcs.aqi.beans.UserDetail;
 import com.tcs.aqi.database.Testing;
 import com.tcs.aqi.beans.Admin;
 
-@SessionAttributes({"user","userType","error"})
+@SessionAttributes({"user","userType","message"})
 @Scope("session")
 @Controller
 public class RequestController {	
@@ -34,7 +34,7 @@ public class RequestController {
 	 {
 		// ModelAndView model=new ModelAndView("index","command", new com.javatpoint.beans.Admin());
 		// session.setAttribute("userType","jimmy");
-		 modelM.addAttribute("jim","jimmy");
+		 //modelM.addAttribute("jim","jimmy");
 		 modelM.addAttribute("pollutant",new Pollutant());
 		 modelM.addAttribute("command",new Admin());
 		 return "index";
@@ -46,6 +46,7 @@ public class RequestController {
 		 return "redirect:/";
 	 }
 	 
+	 /*
 	 @RequestMapping(value="/error",method=RequestMethod.GET)
 	 public @ResponseBody ResponseEntity<String> geList(ModelMap model){
 	 	 	String message= (String) model.get("error");
@@ -55,7 +56,7 @@ public class RequestController {
 	 	 	else
 	 	 		return new ResponseEntity<String>("", HttpStatus.OK);
 	 }
-	 
+	 */
 	 @RequestMapping(value = "/form",method =  RequestMethod.GET)
 		public String showForm(ModelMap model)
 		{
@@ -83,7 +84,8 @@ public class RequestController {
 		ac = new AQICalculation();
 		ac.calculate(emp, model);
 		ac.databaseCall();
-		return "Datadisplay";
+		model.addAttribute("message","data added successfully");
+		return "redirect:/form";
 	}
 	
 	
@@ -100,9 +102,10 @@ public class RequestController {
 			model.addAttribute("user", adminDetail);
 			return "redirect:/adminInput";	
 		}
-		else
+		else{
+			model.addAttribute("message","Invalid Credentials!!! Please Try Again");
 			return "redirect:/";
-		
+		}
 	}
 	
 	@RequestMapping(value = "/adminInput")
@@ -123,7 +126,7 @@ public class RequestController {
 			return "redirect:/";
 		}
 		else{
-			model.addAttribute("error","Invalid Credentials!!! Please Try Again");
+			model.addAttribute("message","Invalid Credentials!!! Please Try Again");
 			return "redirect:/";
 		}
 	}
@@ -136,7 +139,10 @@ public class RequestController {
 	@RequestMapping(value = "/search")
 	public String search (ModelMap model){
 		
-		if(!model.get("userType").equals("") && model.get("userType")!=null){
+		String userType= (String)model.get("userType");
+		
+		System.out.println(userType);
+		if(userType!=null && !userType.equals("")){
 			model.addAttribute("command",new SCL());
 			return "OnSearch";
 		}else
@@ -169,12 +175,13 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/processscl")
-	public String processscl (@ModelAttribute("scl") SCL scl ){
+	public String processscl (@ModelAttribute("scl") SCL scl, ModelMap model ){
 		
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		Testing testing = (Testing)context.getBean("testing");
 		testing.addSCL(scl.getState(),scl.getCity(),scl.getLocation());
-		return  "SclSuccess";
+		model.addAttribute("message","location added successfully");
+		return  "redirect:/addscl";
 	}
 	@RequestMapping(value = "/registerForm")
 	public String registrationForm(ModelMap model){
@@ -187,15 +194,16 @@ public class RequestController {
 			return "redirect:/";
 	}
 	@RequestMapping(value = "/addUser")
-	public String addUser(@ModelAttribute("user_") UserDetail user_){
+	public String addUser(@ModelAttribute("user_") UserDetail user_, ModelMap model){
 		
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		Testing testing = (Testing)context.getBean("testing");
 		boolean exist = testing.addUser(user_.getfName(),user_.getlName(),user_.getEmail(),user_.getPassword(),user_.getState(),user_.getCity(),user_.getLocation());
-		if(exist)
-			return "UserExistErrorPage";
-		else
-			return "SignupSuccessfull";		
+		if(exist){
+			model.addAttribute("message","userExists");
+		}else
+			model.addAttribute("message","sign up successfull");
+		return "redirect:/";	
 	}
 }
 	

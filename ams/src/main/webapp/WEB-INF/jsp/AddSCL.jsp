@@ -20,6 +20,15 @@
     <link rel="stylesheet" type="text/css" href="<c:url value = "/resources/css/state.css"/>">
     </head>
     <body>
+    
+    	<c:set var="error" value="${message}"/>
+    	<script type="text/javascript">
+    		var e= '${error}';
+    		if(e != "")
+    			alert(e);
+    		<% session.setAttribute("message", ""); %>
+    	</script>
+    
       <!-- <h1>Hello, world!</h1> -->
       <div class="bg">
         <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: none;">
@@ -27,16 +36,19 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <a class="navbar-brand" href="#" style="padding-left: 80px;">AMS</a>
-
+          
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="homepage">Home <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active">
+            <div class="navbar-brand"  style="padding-left: 80px;">${user.username}</div>
+          </li>
           </ul>
-          <a href="#"><button class="btn-change9" type="submit" disabled="disabled">${user.username}</button></a>
+          <!-- <a href="#"><button class="btn-change9" type="submit" disabled="disabled">${user.username}</button></a>-->
           <a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
-          <a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a>
+          <a href="logout"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a>
         </div>
       </nav>
           <div class="main-name">

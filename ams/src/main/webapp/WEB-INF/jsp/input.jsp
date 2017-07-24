@@ -26,6 +26,15 @@
     </style>
     </head>
   <body>
+  
+  	<c:set var="error" value="${message}"/>
+    	<script type="text/javascript">
+    		var e= '${error}';
+    		if(e != "")
+    			alert(e);
+    		<% session.setAttribute("message", ""); %>
+    	</script>
+  
     <!-- <h1>Hello, world!</h1> -->
     <div class="bg">
       <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: none;">
@@ -39,8 +48,12 @@
           <li class="nav-item active">
             <a class="nav-link" href="homepage">Home <span class="sr-only">(current)</span></a>
           </li>
+        
+          <li class="nav-item active">
+            <div class="navbar-brand"  style="padding-left: 80px;">${user.username}</div>
+          </li>
         </ul>
-        <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
+        <!-- <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>-->
         <a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
         <c:url var="logout" value="/logout"/>
         <a href="${logout}"><button class="btn-change8" type="button" >Logout</button></a>

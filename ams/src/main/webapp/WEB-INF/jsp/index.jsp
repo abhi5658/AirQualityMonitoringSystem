@@ -14,28 +14,21 @@
     <spring:url value="/resources/css/index.css" var="indexCSS" />
     <spring:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" var="bootstrapCSS" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script>
-    $(document).ready(function(){
-	
-		$.ajax({
-			url:"error",
-			
-			success: function(data){
-				if(data!=null && !data.equals(""))
-				alert(data);
-				else
-					alert("hdjkfk");
-			}
-		});
-	});
-	</script>
-    
     
     <link href="<c:url value="/resources/css/index.css"/>" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
     
     </head>
     <body>
+    
+    	<c:set var="error" value="${message}"/>
+    	<script type="text/javascript">
+    		var e= '${error}';
+    		if(e != "")
+    			alert(e);
+    		<% session.setAttribute("message", ""); %>
+    	</script>
+    
       <!-- <h1>Hello, world!</h1> -->
       <div class="bg">
         <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: none;">
@@ -44,7 +37,7 @@
           </button>
           <a class="navbar-brand" href="#" style="padding-left: 80px;">AMS</a>
           <c:if test="${!empty userType}">
-		  	<div class="navbar-brand"  style="padding-left: 80px;">Hello,"${user.username}"</div>
+		  	<div class="navbar-brand"  style="padding-left: 80px;">${user.username}</div>
           </c:if>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -59,9 +52,7 @@
           </c:if>
           
           <c:if test="${!empty userType}">
-          	
-          	
-          	
+       	
           	<c:set var="userType" value="${userType}"/>
           	<c:set var="user" value="user"/>
           	<c:set var="admin" value="admin"/> 
