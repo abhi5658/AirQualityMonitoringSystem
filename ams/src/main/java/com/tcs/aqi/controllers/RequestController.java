@@ -109,8 +109,14 @@ public class RequestController {
 	}
 	
 	@RequestMapping(value = "/adminInput")
-	public String adminInput (){
-		return "AdminInput";
+	public String adminInput (ModelMap model){
+		String userType= (String)model.get("userType");
+		
+		System.out.println(userType);
+		if(userType!=null && userType.equals("admin")){
+			return "AdminInput";
+		}else
+			return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/userLogin")
@@ -204,6 +210,11 @@ public class RequestController {
 		}else
 			model.addAttribute("message","sign up successfull");
 		return "redirect:/";	
+	}
+	
+	public ModelAndView noti(){
+		ModelAndView model= new ModelAndView("index");
+		return model;		
 	}
 }
 	

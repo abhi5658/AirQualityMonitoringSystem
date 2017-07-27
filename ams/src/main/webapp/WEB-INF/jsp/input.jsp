@@ -27,13 +27,15 @@
     </head>
   <body>
   
-  	<c:set var="error" value="${message}"/>
+  	<!-- 
+  	  	<c:set var="error" value="${message}"/>
     	<script type="text/javascript">
     		var e= '${error}';
     		if(e != "")
     			alert(e);
-    		<% session.setAttribute("message", ""); %>
+    		 session.setAttribute("message", ""); %>
     	</script>
+  	-->
   
     <!-- <h1>Hello, world!</h1> -->
     <div class="bg">
@@ -119,6 +121,16 @@
           </div>
       </div>
     </nav>
+    
+    <!--displaying message -->
+      <div>
+    	<h6 align="center"><span style="color:maroon"><%= (session.getAttribute("message")==null) ? "" : (session.getAttribute("message"))%></span></h6>
+    	<% if(session.getAttribute("message")!=""){
+    			session.setAttribute("message",null);
+    		}
+    	%>  
+      </div>
+    
     <div class="container">
     		<p style="text-align: center;font-size: 2em;color: white;padding-top: 50px;">Enter cardinalities</p>
     </div>
@@ -242,7 +254,7 @@
     			<div class="col-3">
 	    		
 	    		<sql:setDataSource var = "snapshot" driver = "org.postgresql.Driver" 
-					url = "jdbc:postgresql://aqidetail.cg0cosijewak.us-west-2.rds.amazonaws.com:5432/AQIDetail"
+					url = "jdbc:postgresql://testnear.cqvriimggiec.ap-south-1.rds.amazonaws.com:5432/AQIDetail"
 					user = "abhi"  password = "12345678"/>
 				<sql:query dataSource = "${snapshot}" var = "result">
 					select * from statemaster;

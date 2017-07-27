@@ -21,14 +21,6 @@
     </head>
     <body>
     
-    	<c:set var="error" value="${message}"/>
-    	<script type="text/javascript">
-    		var e= '${error}';
-    		if(e != "")
-    			alert(e);
-    		<% session.setAttribute("message", ""); %>
-    	</script>
-    
       <!-- <h1>Hello, world!</h1> -->
       <div class="bg">
         <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: none;">
@@ -51,6 +43,16 @@
           <a href="logout"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a>
         </div>
       </nav>
+      
+      <!--displaying message -->
+      <div>
+    	<h6 align="center"><span style="color:maroon"><%= (session.getAttribute("message")==null) ? "" : (session.getAttribute("message"))%></span></h6>
+    	<% if(session.getAttribute("message")!=""){
+    			session.setAttribute("message",null);
+    		}
+    	%>  
+      </div>
+      
           <div class="main-name">
               <h1>Add New Region</h1>
               <center><div class="underline"></div></center>

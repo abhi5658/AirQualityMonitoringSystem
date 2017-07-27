@@ -14,21 +14,13 @@
     <spring:url value="/resources/css/index.css" var="indexCSS" />
     <spring:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" var="bootstrapCSS" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    
+   
     <link href="<c:url value="/resources/css/index.css"/>" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
     
     </head>
     <body>
-    
-    	<c:set var="error" value="${message}"/>
-    	<script type="text/javascript">
-    		var e= '${error}';
-    		if(e != "")
-    			alert(e);
-    		<% session.setAttribute("message", ""); %>
-    	</script>
-    
+  
       <!-- <h1>Hello, world!</h1> -->
       <div class="bg">
         <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: none;">
@@ -126,6 +118,17 @@
           </div>
         </div>
       </nav>
+      
+      <!--displaying message -->
+      <div>
+    	<h6 align="center"><span style="color:maroon"><%= (session.getAttribute("message")==null) ? "" : (session.getAttribute("message"))%></span></h6>
+    	<% if(session.getAttribute("message")!=""){
+    			session.setAttribute("message",null);
+    		}
+    	%>  
+      </div>
+    
+    
     <div class="main-name">
       <p>Air Monitoring System</p>
       <section id="section04" class="demo">
@@ -157,5 +160,6 @@
     
     <spring:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" var="teCSS" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  </body>
+ 	
+    </body>
 </html>

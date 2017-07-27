@@ -12,6 +12,7 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
 
+import com.tcs.aqi.controllers.RequestController;
 import com.tcs.aqi.database.Testing;
  
 @Service
@@ -25,15 +26,17 @@ public class cronJob
 //    @Scheduled(cron="* */1 * * * ?")
     @Scheduled(cron="0 0/1 * ? * *")
     public void demoServiceMethod()
-    {
+    {/*
     	Date date = java.sql.Date.valueOf(LocalDate.now());
+    	boolean check =  testing.notification(Date.valueOf(LocalDate.now()));
     	
-   	
+    	RequestController req= new RequestController();
+    	req.noti();
         System.out.println("+-+-+-+-+----Method executed. Current time is :: "+ new java.util.Date()+"------+-+-+-+");
         testing.addCron(date,value);
         value++;
         System.out.println("Done entering into database.......");
-    }
+    */}
 }
 /*    	
  * Keep an eye at the console(It will make you understand what's happening)

@@ -105,4 +105,11 @@ public class Testing {
 	public void addCron(Date date,int value){
 		jdbcTemplateObject.update("insert into cronhere (date,value) values (?,?)",date,value);
 	}
+	public boolean notification(Date date){
+		int check = jdbcTemplateObject.queryForObject("select count(*) from aqitable where date = ?", new Object[] {date}, Integer.class);//.queryForInt("select count(*) from userdetail where email = ?", email);
+		if(check > 0)
+			return true;
+		else
+			return false;
+	}
 }

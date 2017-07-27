@@ -25,7 +25,7 @@
       <!-- <h1>Hello, world!</h1> -->
 
       <sql:setDataSource var = "snapshot" driver = "org.postgresql.Driver" 
-          url = "jdbc:postgresql://aqidetail.cg0cosijewak.us-west-2.rds.amazonaws.com:5432/AQIDetail"
+          url = "jdbc:postgresql://testnear.cqvriimggiec.ap-south-1.rds.amazonaws.com:5432/AQIDetail"
           user = "abhi"  password = "12345678"/>
           <sql:query dataSource = "${snapshot}" var = "result">
             select * from statemaster;
