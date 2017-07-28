@@ -22,12 +22,13 @@ import com.tcs.aqi.beans.UserDetail;
 import com.tcs.aqi.database.Testing;
 import com.tcs.aqi.beans.Admin;
 
-@SessionAttributes({"user","userType","message"})
+@SessionAttributes({"user","userType","message","noti"})
 @Scope("session")
 @Controller
 public class RequestController {	
 	 public Date date;
 	 public AQICalculation ac;
+	 public ModelMap model1;
 	
 	 @RequestMapping("/")
 	 public String welcome (ModelMap modelM)
@@ -35,6 +36,7 @@ public class RequestController {
 		// ModelAndView model=new ModelAndView("index","command", new com.javatpoint.beans.Admin());
 		// session.setAttribute("userType","jimmy");
 		 //modelM.addAttribute("jim","jimmy");
+		 model1= modelM;
 		 modelM.addAttribute("pollutant",new Pollutant());
 		 modelM.addAttribute("command",new Admin());
 		 return "index";
@@ -212,9 +214,10 @@ public class RequestController {
 		return "redirect:/";	
 	}
 	
-	public ModelAndView noti(){
-		ModelAndView model= new ModelAndView("index");
-		return model;		
+	public void noti(){
+		
+		//model1.addAttribute("noti","1st noti");
+		return;		
 	}
 }
 	

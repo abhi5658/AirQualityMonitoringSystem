@@ -58,11 +58,11 @@
 						}, 
 						
 						"data": 
-							[{ "label": "${airQuality.date.get(0)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(0))}"},
-								{ "label": "${airQuality.date.get(1)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(1))}" },
-								{ "label": "${airQuality.date.get(2)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(2))}" },
+							[{ "label": "${airQuality.date.get(4)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(4))}"},
 								{ "label": "${airQuality.date.get(3)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(3))}" },
-								{ "label": "${airQuality.date.get(4)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(4))}" }]
+								{ "label": "${airQuality.date.get(2)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(2))}" },
+								{ "label": "${airQuality.date.get(1)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(1))}" },
+								{ "label": "${airQuality.date.get(0)}", "value": "${airQuality.dateAqi.get(airQuality.date.get(0))}" }]
 					} 
 				} ); 
 				

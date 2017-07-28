@@ -26,12 +26,17 @@ public class cronJob
 //    @Scheduled(cron="* */1 * * * ?")
     @Scheduled(cron="0 0/1 * ? * *")
     public void demoServiceMethod()
-    {/*
+    {
     	Date date = java.sql.Date.valueOf(LocalDate.now());
     	boolean check =  testing.notification(Date.valueOf(LocalDate.now()));
     	
     	RequestController req= new RequestController();
-    	req.noti();
+    	if(check){
+    		req.noti();
+    		System.out.println("check");
+    	}else
+    		System.out.println(date);
+    	/*
         System.out.println("+-+-+-+-+----Method executed. Current time is :: "+ new java.util.Date()+"------+-+-+-+");
         testing.addCron(date,value);
         value++;

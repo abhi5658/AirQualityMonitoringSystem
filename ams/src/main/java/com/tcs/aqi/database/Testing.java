@@ -55,6 +55,8 @@ public class Testing {
 		 System.out.println(pollutant.getDateAqi());
 		 ArrayList<Date> list =new ArrayList<Date>(pollutant.getDateAqi().keySet());
 		 Collections.sort(list);
+		 Collections.reverse(list);
+		 //Collections.
 		 System.out.println("pm10: "+pollutant.getpm10());
 		pollutant.setDate(list);
 		return pollutant;

@@ -17,9 +17,43 @@
    
     <link href="<c:url value="/resources/css/index.css"/>" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+    <script>
     
+    function notifyMe() {
+    		//alert("ndskj");
+    	  // Let's check if the browser supports notifications
+    	  if (!("Notification" in window)) {
+    	    alert("This browser does not support desktop notification");
+    	  }
+
+    	  // Let's check whether notification permissions have already been granted
+    	  else if (Notification.permission === "granted") {
+    	    // If it's okay let's create a notification
+    	    var noti= '${noti}';
+    	    
+    	    if(noti != null)
+    	    	var notification = new Notification("Hi there!: "+ str);
+    	  }
+
+    	  // Otherwise, we need to ask the user for permission
+    	  else if (Notification.permission !== "denied") {
+    	    Notification.requestPermission(function (permission) {
+    	      // If the user accepts, let's create a notification
+    	      if (permission === "granted") {
+    	    	  var noti= '${noti}';
+    	    	    if(noti != null)
+    	    	    	var notification = new Notification("Hi there!: "+ str);
+    	      }
+    	    });
+    	  }
+
+    	  // At last, if the user has denied notifications, and you 
+    	  // want to be respectful there is no need to bother them any more.
+    	}
+    
+    </script>
     </head>
-    <body>
+    <body onload="notifyMe()">
   
       <!-- <h1>Hello, world!</h1> -->
       <div class="bg">
