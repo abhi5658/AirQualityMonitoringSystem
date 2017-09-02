@@ -40,6 +40,10 @@ http://www.springframework.org/schema/task http://www.springframework.org/schema
 	</bean>
 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
+	
+	<mvc:interceptors>
+        <bean class="com.tcs.aqi.handlerInterceptor"/>
+    </mvc:interceptors>
 
 	<mvc:annotation-driven />
 	<bean id="cronJob" class="com.tcs.aqi.services.cronJob"></bean>

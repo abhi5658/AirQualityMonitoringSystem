@@ -13,10 +13,11 @@
     <!-- Bootstrap CSS -->
     <spring:url value="/resources/css/index.css" var="indexCSS" />
     <spring:url value="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" var="bootstrapCSS" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    
     <link href="<c:url value="/resources/css/index.css"/>" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"/>
+ 	<!-- 
     <script>
     
     function notifyMe() {
@@ -30,10 +31,12 @@
     	  else if (Notification.permission === "granted") {
     	    // If it's okay let's create a notification
     	    var noti= '${noti}';
-    	    
-    	    if(noti != null)
-    	    	var notification = new Notification("Hi there!: "+ str);
-    	  }
+    	    alert("ndskj");
+    	    if(noti != null && noti!= ""){
+    	    	alert("ndskj666: "+noti);
+    	    	var notification = new Notification("Hi there!: "+ noti);
+    	    }
+        }
 
     	  // Otherwise, we need to ask the user for permission
     	  else if (Notification.permission !== "denied") {
@@ -42,7 +45,7 @@
     	      if (permission === "granted") {
     	    	  var noti= '${noti}';
     	    	    if(noti != null)
-    	    	    	var notification = new Notification("Hi there!: "+ str);
+    	    	    	var notification = new Notification("Hi there!: "+ noti);
     	      }
     	    });
     	  }
@@ -52,46 +55,31 @@
     	}
     
     </script>
+    
+<script>
+$(document).ready(function(){
+	
+		alert("fdnjn");
+		$.ajax({
+			url:"getNotification",
+			success: function(data){
+				alert(data+'${noti}');
+				
+			}
+		});
+
+});
+</script>
+ 	-->
+ 	
     </head>
-    <body onload="notifyMe()">
+    <body onload="return notifyMe()" id="bd">
+  	
   
       <!-- <h1>Hello, world!</h1> -->
       <div class="bg">
-        <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: none;">
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
-          <a class="navbar-brand" href="#" style="padding-left: 80px;">AMS</a>
-          <c:if test="${!empty userType}">
-		  	<div class="navbar-brand"  style="padding-left: 80px;">${user.username}</div>
-          </c:if>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-             <!--   <a class="nav-link" href="registerForm">Sign Up <span class="sr-only">(current)</span></a> -->
-            </li>
-          </ul>
-          
-          <c:if test="${empty userType}">
-              	<a href="registerForm"><button class="btn-change7" type="submit">Sign Up</button></a>  
-          		<a href="#"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Login</button></a>
-          </c:if>
-          
-          <c:if test="${!empty userType}">
-       	
-          	<c:set var="userType" value="${userType}"/>
-          	<c:set var="user" value="user"/>
-          	<c:set var="admin" value="admin"/> 
-          	<c:if test="${userType eq  user}">
-              	<a href="search"><button class="btn-change7" type="submit">Search</button></a>
-          	</c:if>
-          	<c:if test="${userType eq  admin}">
-              	<a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
-          	</c:if>
-          	<c:url var="logout" value="/logout"/>
-        	<a href="${logout}"><button class="btn-change8" type="button">Logout</button></a>
-          </c:if>
-          <div class="modal fade" id="loginModal" role="dialog">
+        <jsp:include page="header.jsp"/>
+        <div class="modal fade" id="loginModal" role="dialog">
             <div class="modal-dialog modal-md">
             
               <!-- Modal content-->
@@ -150,8 +138,6 @@
               
             </div>
           </div>
-        </div>
-      </nav>
       
       <!--displaying message -->
       <div>

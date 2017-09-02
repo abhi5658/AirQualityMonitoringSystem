@@ -2,6 +2,8 @@ package com.tcs.aqi.controllers;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -27,7 +29,6 @@ import com.tcs.aqi.beans.Admin;
 @Controller
 public class RequestController {	
 	 public Date date;
-	 public AQICalculation ac;
 	 public ModelMap model1;
 	
 	 @RequestMapping("/")
@@ -36,9 +37,10 @@ public class RequestController {
 		// ModelAndView model=new ModelAndView("index","command", new com.javatpoint.beans.Admin());
 		// session.setAttribute("userType","jimmy");
 		 //modelM.addAttribute("jim","jimmy");
-		 model1= modelM;
-		 modelM.addAttribute("pollutant",new Pollutant());
+		// model1= modelM;
+		 //modelM.addAttribute("pollutant",new Pollutant());
 		 modelM.addAttribute("command",new Admin());
+		 modelM.addAttribute("noti","noti");
 		 return "index";
 	 
 	 }
@@ -58,167 +60,13 @@ public class RequestController {
 	 	 	else
 	 	 		return new ResponseEntity<String>("", HttpStatus.OK);
 	 }
-	 */
-	 @RequestMapping(value = "/form",method =  RequestMethod.GET)
-		public String showForm(ModelMap model)
-		{
-			String userType= (String)model.get("userType");
-			
-			System.out.println(userType);
-			if(userType!=null && userType.equals("admin")){
-				model.addAttribute("command", new Pollutant());
-				return "input";
-			}else
-				return "redirect:/";
-		}
-	
-	 @RequestMapping(value = "/logout",method =  RequestMethod.GET)
-		public String logOut(ModelMap model)
-		{
-			model.addAttribute("userType","");
-			model.addAttribute("user",new Admin());
-			
-			return "redirect:/";
-		}
 	 
-	@RequestMapping(value="/save",method = RequestMethod.POST)
-	public String save(@ModelAttribute("emp") Pollutant emp ,ModelMap model){
-		ac = new AQICalculation();
-		ac.calculate(emp, model);
-		ac.databaseCall();
-		model.addAttribute("message","data added successfully");
-		return "redirect:/form";
-	}
-	
-	
-	@RequestMapping(value = "/admininput",method = RequestMethod.GET)
-	public String adminLogin(@ModelAttribute("adminDetail") Admin adminDetail,ModelMap model){
-		
-		System.out.println(adminDetail.getUsername()+" "+adminDetail.getPassword());
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Testing testing = (Testing)context.getBean("testing");
-		boolean check = testing.checkAdmin(adminDetail.getUsername(),adminDetail.getPassword());
-		if (check){
-			
-			model.addAttribute("userType","admin");
-			model.addAttribute("user", adminDetail);
-			return "redirect:/adminInput";	
-		}
-		else{
-			model.addAttribute("message","Invalid Credentials!!! Please Try Again");
-			return "redirect:/";
-		}
-	}
-	
-	@RequestMapping(value = "/adminInput")
-	public String adminInput (ModelMap model){
-		String userType= (String)model.get("userType");
-		
-		System.out.println(userType);
-		if(userType!=null && userType.equals("admin")){
-			return "AdminInput";
-		}else
-			return "redirect:/";
-	}
-	
-	@RequestMapping(value = "/userLogin")
-	public String userLogin(@ModelAttribute("adminDetail") Admin adminDetail, ModelMap model){
-		
-		System.out.println(adminDetail.getUsername()+" "+adminDetail.getPassword());
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Testing testing = (Testing)context.getBean("testing");
-		boolean check = testing.checkUser(adminDetail.getUsername(),adminDetail.getPassword());
-		if (check){
-			model.addAttribute("userType","user");
-			model.addAttribute("user",adminDetail);
-			return "redirect:/";
-		}
-		else{
-			model.addAttribute("message","Invalid Credentials!!! Please Try Again");
-			return "redirect:/";
-		}
-	}
-	
 	@RequestMapping(value = "/loginIndex")
 	public String loginIndex (){
 		return "LoginIndex";
 	}
+	*/
 	
-	@RequestMapping(value = "/search")
-	public String search (ModelMap model){
-		
-		String userType= (String)model.get("userType");
-		
-		System.out.println(userType);
-		if(userType!=null && !userType.equals("")){
-			model.addAttribute("command",new SCL());
-			return "OnSearch";
-		}else
-			return "redirect:/";
-		
-	}
-	@RequestMapping(value="/processsearch")
-	public String onSearch(@ModelAttribute("scl")SCL scl,ModelMap model){
-		
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Testing testing = (Testing)context.getBean("testing");
-		System.out.println("Date: "+scl.getTodate()+"  "+scl.getFromdate());
-		Pollutant pollutant = testing.dateAqi(scl.getState(), scl.getCity(), scl.getLocation(), Date.valueOf(LocalDate.now()));
-		model.addAttribute("airQuality",pollutant);
-		return "Search";
-	}
-	
-	@RequestMapping(value = "/addscl")
-	public String addscl(ModelMap model){
-		
-		String userType= (String)model.get("userType");
-		
-		System.out.println(userType);
-		if(userType!=null && userType.equals("admin")){
-			model.addAttribute("command",new SCL());
-			return "AddSCL";
-		}
-		else
-			return "redirect:/";
-	}
-	
-	@RequestMapping(value = "/processscl")
-	public String processscl (@ModelAttribute("scl") SCL scl, ModelMap model ){
-		
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Testing testing = (Testing)context.getBean("testing");
-		testing.addSCL(scl.getState(),scl.getCity(),scl.getLocation());
-		model.addAttribute("message","location added successfully");
-		return  "redirect:/addscl";
-	}
-	@RequestMapping(value = "/registerForm")
-	public String registrationForm(ModelMap model){
-		
-		String str= (String)model.get("userType");
-		if(str==null || str.equals("") ){
-			model.addAttribute("command",new UserDetail());
-			return "RegistrationForm";
-		}else
-			return "redirect:/";
-	}
-	@RequestMapping(value = "/addUser")
-	public String addUser(@ModelAttribute("user_") UserDetail user_, ModelMap model){
-		
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Testing testing = (Testing)context.getBean("testing");
-		boolean exist = testing.addUser(user_.getfName(),user_.getlName(),user_.getEmail(),user_.getPassword(),user_.getState(),user_.getCity(),user_.getLocation());
-		if(exist){
-			model.addAttribute("message","userExists");
-		}else
-			model.addAttribute("message","sign up successfull");
-		return "redirect:/";	
-	}
-	
-	public void noti(){
-		
-		//model1.addAttribute("noti","1st noti");
-		return;		
-	}
 }
 	
 

@@ -84,9 +84,8 @@ public class Testing {
 		}
 		return true;
 	}
-	public boolean addUser(String fName, String lName, String email, String password, String state, String city,
-			String location) {
-		
+	public boolean addUser(String fName, String lName, String email, String password, String state, String city, String location) {
+	
 		int check = jdbcTemplateObject.queryForObject("select count(*) from userdetail where email = ?", new Object[] {email}, Integer.class);//.queryForInt("select count(*) from userdetail where email = ?", email);
 		if(check > 0)
 			return true;

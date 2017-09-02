@@ -59,66 +59,7 @@
         <a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
         <c:url var="logout" value="/logout"/>
         <a href="${logout}"><button class="btn-change8" type="button" >Logout</button></a>
-          <div class="modal fade" id="loginModal" role="dialog">
-            <div class="modal-dialog modal-md">
-            
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Login</h4>
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                  <!-- Nav tabs -->
-
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" href="#login" role="tab">Login</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" href="#register" role="tab">Admin Login</a>
-                    </li>
-                  </ul>
-
-                  <!-- Tab panes -->
-                  <div class="tab-content" style="padding-top: 20px;">
-                    <div class="tab-pane active" id="login" role="tabpanel">
-                      <form action="#" method="post">
-                        <label for="inputEmail" class="sr-only">User name</label>
-                        <input type="text" id="inputEmail" class="form-control" placeholder="User name" required autofocus name="username" required="true">
-                        
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required="true"> 
-                        <br>
-                        <a href="forgotpassword.php">Forgot Password?</a>
-                        <input type="submit" value="Sign in">
-                      </form>
-                    </div>
-                    <div class="tab-pane" id="register" role="tabpanel">
-                      <form method="post" action="#">
-                        <label for="inputEmail" class="sr-only">User name</label>
-                        <input type="text" id="inputEmail" class="form-control" placeholder="User name" required autofocus name="username" required="true">
-                        
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" required="true"> 
-                        <br>
-                        <a href="forgotpassword.php">Forgot Password?</a>
-                        <input type="submit" value="Sign in">
-                      </form>
-                        
-                    </div>
-                  </div>
-                          
-                              
-                  
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-              
-            </div>
-          </div>
+          
       </div>
     </nav>
     

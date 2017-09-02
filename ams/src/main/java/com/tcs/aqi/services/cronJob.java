@@ -24,15 +24,15 @@ public class cronJob
 	int value = 5;
 	
 //    @Scheduled(cron="* */1 * * * ?")
-    @Scheduled(cron="0 0/1 * ? * *")
+   @Scheduled(cron="0 0/1 * ? * *")
     public void demoServiceMethod()
     {
     	Date date = java.sql.Date.valueOf(LocalDate.now());
     	boolean check =  testing.notification(Date.valueOf(LocalDate.now()));
     	
     	RequestController req= new RequestController();
-    	if(check){
-    		req.noti();
+    	if(!check){
+  //  		req.noti();
     		System.out.println("check");
     	}else
     		System.out.println(date);

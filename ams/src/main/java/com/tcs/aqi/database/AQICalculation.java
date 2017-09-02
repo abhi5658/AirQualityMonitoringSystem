@@ -1,4 +1,4 @@
-package com.tcs.aqi.controllers;
+package com.tcs.aqi.database;
 
 import java.lang.reflect.Field;
 import java.sql.Date;
@@ -11,7 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.ui.ModelMap;
 
 import com.tcs.aqi.beans.Pollutant;
-import com.tcs.aqi.database.Testing;
 
 public class AQICalculation {
 	static double pm10,pm2dot5,no2,o3,co,so2,nh3,pb;
