@@ -9,6 +9,7 @@ public class Pollutant {
 	private float pm10,pm2dot5,no2,o3,co,so2,nh3,pb;
 	private String state;
 	private String city,location;
+	private int listSize;
 	private HashMap<Date, Double> dateAqi = new HashMap<>();
 	public ArrayList<Date> date = new ArrayList<>();
 	private Date dateForData;
@@ -122,5 +123,13 @@ public class Pollutant {
 	public ArrayList<Date> getDate ()
 	{
 		return date;
+	}
+	public void setListSize (int listSize)
+	{
+		this.listSize = listSize;
+	}
+	public int getListSize ()
+	{
+		return listSize;
 	}
 }

@@ -72,7 +72,7 @@
 		</head> 
 		<body> 
 			<a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
-			<div id="chart-container-for-conc">FusionCharts XT will load here!</div>
-			<div id="chart-container-for-AQI">FusionCharts XT will load here!</div> 
+			<div id="chart-container-for-conc">Loading Concentration...</div>
+			<div id="chart-container-for-AQI">Loading AQI...</div> 
 		</body> 
 	</html>

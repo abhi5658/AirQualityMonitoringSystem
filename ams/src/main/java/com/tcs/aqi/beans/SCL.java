@@ -2,9 +2,12 @@ package com.tcs.aqi.beans;
 
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class SCL {
 	private String state;
 	private String city,location;
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	private Date todate,fromdate;
 	
 	public void setState (String state){

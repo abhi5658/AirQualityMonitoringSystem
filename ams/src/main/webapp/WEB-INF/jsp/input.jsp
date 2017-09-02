@@ -73,7 +73,7 @@
       </div>
     
     <div class="container">
-    		<p style="text-align: center;font-size: 2em;color: white;padding-top: 50px;">Enter cardinalities</p>
+    		<p style="text-align: center;font-size: 2em;color: white;padding-top: 0px;">Enter cardinalities</p>
     </div>
        <form:form method="post" action="save">  
       	
@@ -166,23 +166,12 @@
     				<form:input path = "pb"/>
     			</div>
     		</div>
-    		<div class="row" style="padding-top: 40px;">
-    			<div class="col-5">
-    				
-    			</div>
-    			<div class="col-1">
-    				<input type="submit" name="">
-    			</div>
-    			<div class="col-4">
-    				
-    			</div>
-    		</div>
-    		<div class="row" style="padding-top: 40px;">
+    		<div class="row" style="padding-top: 20px;">
     			<div class="col-5">
     				
     			</div>
     			<div class="col-3">
-    				<p style="font-size:1.5em;"><strong>Select location</strong></p>	
+    				<p style="font-size:1.5em;"><label>Select location</label></p>	
     			</div>
     			<div class="col-4">
     				
@@ -208,7 +197,7 @@
 				</sql:query>
 				
 				
-			    <strong>Select State:</strong> 
+			    <label>Select State:</label> 
 			     <form:select path = "state">
 					<c:forEach var ="row" items = "${result.rows}">
 						<form:option value = "${row.stateid}">${row.state}</form:option>
@@ -217,7 +206,7 @@
 			      </div>
 			      <div class="col-3">
 	    		
-			    <strong>Select City:</strong> 
+			    <label>Select City:</label> 
 			       <form:select path = "city">
 					<c:forEach var ="row" items = "${cityresult.rows}">
 						<form:option value = "${row.cityid}">${row.city}</form:option>
@@ -226,17 +215,27 @@
 			      </div>
 			      <div class="col-3">
 	    		
-			    <strong>Select Location:</strong> 
+			    <label>Select Location:</label> 
 			       <form:select path = "location">
 					<c:forEach var ="row" items = "${locationresult.rows}">
 						<form:option value = "${row.locationid}">${row.location}</form:option>
 					</c:forEach>
 					</form:select>
 			      </div>
-			    <div class="col-3">
+			    
+    		</div>
+    		<div class="row" style="padding-top: 40px;">
+    			<div class="col-5">
     				
     			</div>
-    		</div>	
+    			<div class="col-1">
+    				<input type="submit" name="">
+    			</div>
+    			<div class="col-4">
+    				
+    			</div>
+    		</div>
+    			
     	</div>       
        </form:form>  
        <footer class="footer">

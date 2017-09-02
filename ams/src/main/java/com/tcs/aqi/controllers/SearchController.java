@@ -80,7 +80,7 @@ public class SearchController {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		Testing testing = (Testing)context.getBean("testing");
 		System.out.println("Date: "+scl.getTodate()+"  "+scl.getFromdate());
-		Pollutant pollutant = testing.dateAqi(scl.getState().toLowerCase(), scl.getCity().toLowerCase(), scl.getLocation().toLowerCase(), Date.valueOf(LocalDate.now()));
+		Pollutant pollutant = testing.dateAqi(scl.getState(), scl.getCity(), scl.getLocation(), Date.valueOf(LocalDate.now()),scl.getTodate(),scl.getFromdate());
 		model.addAttribute("airQuality",pollutant);
 		return "Search";
 	}

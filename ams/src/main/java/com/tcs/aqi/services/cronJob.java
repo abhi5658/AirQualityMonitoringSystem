@@ -27,7 +27,7 @@ public class cronJob
    @Scheduled(cron="0 0/1 * ? * *")
     public void demoServiceMethod()
     {
-    	Date date = java.sql.Date.valueOf(LocalDate.now());
+    	/*Date date = java.sql.Date.valueOf(LocalDate.now());
     	boolean check =  testing.notification(Date.valueOf(LocalDate.now()));
     	
     	RequestController req= new RequestController();

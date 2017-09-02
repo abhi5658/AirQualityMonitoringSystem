@@ -48,7 +48,7 @@ public class Testing {
 		else
 			return false;
 	}
-	public Pollutant dateAqi (String state,String city,String location,Date date){
+	/*public Pollutant dateAqi (String state,String city,String location,Date date){
 		String str = "select * from aqitable where stateid = ? and cityid = ? and locationid = ? and date <= ?";
 		 //Pollutant pollutant = jdbcTemplateObject.queryForObject(str,new Object[]{state,city,location,date} ,new dateAqiMapper());
 		 Pollutant pollutant = jdbcTemplateObject.queryForObject(str,new Object[]{state,city,location,date},new dateAqiMapper());
@@ -60,6 +60,34 @@ public class Testing {
 		 System.out.println("pm10: "+pollutant.getpm10());
 		pollutant.setDate(list);
 		return pollutant;
+	}*/
+	public Pollutant dateAqi (String state,String city,String location,Date date,Date todate,Date fromdate){
+		System.out.println("inside dateaqi function");
+		Pollutant pollutant;
+		ArrayList<Date> list;
+		if(todate.equals(fromdate)){
+		String str = "select * from aqitable where stateid = ? and cityid = ? and locationid = ? and date <= ?";
+		 //Pollutant pollutant = jdbcTemplateObject.queryForObject(str,new Object[]{state,city,location,date} ,new dateAqiMapper());
+		 pollutant = jdbcTemplateObject.queryForObject(str,new Object[]{state,city,location,date},new dateAqiMapper());
+		 System.out.println(pollutant.getDateAqi());
+		 list =new ArrayList<Date>(pollutant.getDateAqi().keySet());
+		}
+		else
+		{
+			System.out.println("inside else.");
+			String str = "select * from aqitable where stateid = ? and cityid = ? and locationid = ? and date >= ? and date <= ?";
+			 pollutant = jdbcTemplateObject.queryForObject(str,new Object[]{state,city,location,fromdate,todate},new dateAqiMapper());
+			 System.out.println(pollutant.getDateAqi());
+			 list =new ArrayList<Date>(pollutant.getDateAqi().keySet());
+		}
+		Collections.sort(list);
+		 //System.out.println("pm10: "+pollutant.getpm10());
+		 System.out.println("Date list "+list);
+		pollutant.setDate(list);
+		pollutant.setListSize(list.size());
+		System.out.println("returning value.");
+		return pollutant;
+		
 	}
 	public boolean addSCL (String state,String city,String location){
 		
@@ -113,4 +141,5 @@ public class Testing {
 		else
 			return false;
 	}
+	
 }
