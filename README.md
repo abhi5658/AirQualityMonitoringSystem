@@ -1,10 +1,10 @@
 # AirQualityMonitoringSystem
-This is a WebApp made for Internship project under TATA CONSULTANCY SERVICES.
+This is a WebApp made for monitoring Air Quality made for Internship project under TATA CONSULTANCY SERVICES.
 
-# Contributors : Git ID
-Abhishek Shah : abhi5658<br>
-Brijesh Patel : </br>
-Darshan Asawa : </br>
-Ghanshyam Savaliya : ghanshyam707</br>
-Jimmy Chopda : jhchopda</br>
-Punit Kumar : 
+# Contributors
+- [Abhishek Shah](https://github.com/abhi5658)
+- Brijesh Patel
+- Darshan Asawa
+- [Ghanshyam Savaliya](https://github.com/ghanshyam707)
+- [Jimmy Chopda](https://github.com/jhchopda)
+- Punit Kumar
