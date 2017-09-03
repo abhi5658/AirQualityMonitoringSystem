@@ -6,7 +6,6 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
@@ -14,15 +13,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value = "/resources/css/search.css"/>">
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="<c:url value = "/resources/css/search.css"/>">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
 	<!-- <h1>Hello, world!</h1> -->
@@ -40,8 +37,7 @@
             select * from locationmaster;
           </sql:query>
 	<div class="bg">
-		<nav class="navbar navbar-toggleable-md navbar-inverse"
-			style="background-color: none;">
+		<nav class="w3-panel w3-card-4 navbar navbar-toggleable-md navbar-inverse" style="background-color: none; margin: 2px 0 2px 0; padding: 3px 0 3px 0;">
 		<button class="navbar-toggler navbar-toggler-right" type="button"
 			data-toggle="collapse" data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -63,13 +59,15 @@
 			<c:set var="userType" value="${userType}" />
 			<c:set var="admin" value="admin" />
 			<c:if test="${userType eq  admin}">
-				<a href="adminInput"><button class="btn-change7" type="submit">Manu</button></a>
+				<a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
 			</c:if>
 			<c:url var="logout" value="/logout" />
-			<a href="${logout}"><button class="btn-change8" type="button">Logout</button></a>
+			<a href="${logout}"><button class="btn-change7" type="button">Logout</button></a>
+			<c:url var="noti" value="/getNotification"/>
+        	<a href="${noti}"><button class="btn-change8" type="button">Noti</button></a>
 		</div>
 		</nav>
-		<div class="main-name">
+		<div class="main-name w3-panel w3-card">
 			<h1>Search</h1>
 			<center>
 				<div class="underline"></div>
@@ -105,7 +103,7 @@
 									</form:select></td>
 							</tr>
 							<tr>
-								<td>Range(Optional) :</td>
+								<td>Range(Optional):</td>
 							</tr>
 							<tr>
 								<td>Start Date:</td>

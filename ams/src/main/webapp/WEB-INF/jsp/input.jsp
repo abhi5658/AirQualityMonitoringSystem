@@ -16,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <spring:url value="/resources/css/form1.css" var="form1CSS" />
     <link rel="stylesheet" type="text/css" href="${form1CSS}">
     <style type="text/css">
@@ -39,7 +39,7 @@
   
     <!-- <h1>Hello, world!</h1> -->
     <div class="bg">
-      <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: none;">
+	<nav class="w3-panel w3-card-4 navbar navbar-toggleable-md navbar-inverse" style="background-color: none; margin: 2px 0 2px 0; padding: 3px 0 3px 0;">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
@@ -58,7 +58,9 @@
         <!-- <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>-->
         <a href="adminInput"><button class="btn-change7" type="submit">Menu</button></a>
         <c:url var="logout" value="/logout"/>
-        <a href="${logout}"><button class="btn-change8" type="button" >Logout</button></a>
+        <a href="${logout}"><button class="btn-change7" type="button" >Logout</button></a>
+        <c:url var="noti" value="/getNotification"/>
+        	<a href="${noti}"><button class="btn-change8" type="button">Noti</button></a>
           
       </div>
     </nav>
@@ -72,6 +74,7 @@
     	%>  
       </div>
     
+    <div class="w3-panel w3-card">
     <div class="container">
     		<p style="text-align: center;font-size: 2em;color: white;padding-top: 0px;">Enter cardinalities</p>
     </div>
@@ -237,7 +240,9 @@
     		</div>
     			
     	</div>       
-       </form:form>  
+       </form:form> 
+       
+       </div> 
        <footer class="footer">
 <p style="font-size: 4vw;"><img src="<c:url value="/resources/images/tata.png" />" style="width: 13%;"> CONSULTANCY SERVICES</p>
 	    <p>Copyright @2017 Tata Contultancy Services</p>

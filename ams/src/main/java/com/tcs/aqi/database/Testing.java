@@ -69,6 +69,7 @@ public class Testing {
 		String str = "select * from aqitable where stateid = ? and cityid = ? and locationid = ? and date <= ?";
 		 //Pollutant pollutant = jdbcTemplateObject.queryForObject(str,new Object[]{state,city,location,date} ,new dateAqiMapper());
 		 pollutant = jdbcTemplateObject.queryForObject(str,new Object[]{state,city,location,date},new dateAqiMapper());
+		 System.out.println("\n\n"+pollutant.getco()+" "+pollutant.getnh3()+" "+pollutant.getno2()+" "+pollutant.geto3()+" "+pollutant.getpb()+" "+pollutant.getpm10()+" "+pollutant.getpm2dot5()+" "+pollutant.getso2()+"\n\n");
 		 System.out.println(pollutant.getDateAqi());
 		 list =new ArrayList<Date>(pollutant.getDateAqi().keySet());
 		}
@@ -77,6 +78,7 @@ public class Testing {
 			System.out.println("inside else.");
 			String str = "select * from aqitable where stateid = ? and cityid = ? and locationid = ? and date >= ? and date <= ?";
 			 pollutant = jdbcTemplateObject.queryForObject(str,new Object[]{state,city,location,fromdate,todate},new dateAqiMapper());
+			 System.out.println("\n\n"+pollutant.getco()+" "+pollutant.getnh3()+" "+pollutant.getno2()+" "+pollutant.geto3()+" "+pollutant.getpb()+" "+pollutant.getpm10()+" "+pollutant.getpm2dot5()+" "+pollutant.getso2()+"\n\n");
 			 System.out.println(pollutant.getDateAqi());
 			 list =new ArrayList<Date>(pollutant.getDateAqi().keySet());
 		}

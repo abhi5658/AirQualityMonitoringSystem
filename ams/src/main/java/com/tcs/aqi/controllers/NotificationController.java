@@ -25,10 +25,10 @@ public class NotificationController {
 	}*/
 	
 	@RequestMapping(value="/getNotification",method=RequestMethod.GET)
-	public @ResponseBody ResponseEntity<String> getNotiList(){
+	public String getNotiList(){
 			//model.addAttribute("noti","1st noti");
-			System.out.println("inside getNoti");
-			return new ResponseEntity<String>("2nd noti", HttpStatus.OK);
+			System.out.println("\n\ninside getNoti\n\n");
+			return "redirect:/";
 	}
 	 
 }

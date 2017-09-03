@@ -15,11 +15,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<c:url value = "/resources/css/update.css"/>">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body>
       <!-- <h1>Hello, world!</h1> -->
       <div class="bg">
-        <nav class="navbar navbar-toggleable-md navbar-inverse" style="background-color: none;">
+		<nav class="w3-panel w3-card-4 navbar navbar-toggleable-md navbar-inverse" style="background-color: none; margin: 2px 0 2px 0; padding: 3px 0 3px 0;">
           <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
           </button>
@@ -37,10 +38,12 @@
         </ul>
         <!--   <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
           <a href="search"><button class="btn-change7" type="submit">Search</button></a> -->
-          <a href="logout"><button class="btn-change8" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a>
+          <a href="logout"><button class="btn-change7" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a>
+        	<c:url var="noti" value="/getNotification"/>
+        	<a href="${noti}"><button class="btn-change8" type="button">Noti</button></a>
         </div>
       </nav>
-          <div class="main-name">
+          <div class="main-name w3-panel w3-card">
               <h1>Update</h1>
               <center><div class="underline"></div></center>
               
