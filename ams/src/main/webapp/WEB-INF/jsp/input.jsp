@@ -43,7 +43,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#" style="padding-left: 80px;">AMS</a>
+        <a class="navbar-brand" href="homepage" style="padding-left: 80px;">AMS</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -169,75 +169,78 @@
     				<form:input path = "pb"/>
     			</div>
     		</div>
-    		<div class="row" style="padding-top: 20px;">
-    			<div class="col-5">
-    				
-    			</div>
-    			<div class="col-3">
-    				<p style="font-size:1.5em;"><label>Select location</label></p>	
-    			</div>
-    			<div class="col-4">
-    				
-    			</div>
-    		</div>
-    		<div class="row">
-    			<div class="col-2">
-    				
-    			</div>
-    			<div class="col-3">
-	    		
-	    		<sql:setDataSource var = "snapshot" driver = "org.postgresql.Driver" 
-					url = "jdbc:postgresql://testnear.cqvriimggiec.ap-south-1.rds.amazonaws.com:5432/AQIDetail"
-					user = "abhi"  password = "12345678"/>
-				<sql:query dataSource = "${snapshot}" var = "result">
-					select * from statemaster;
-				</sql:query>
-				<sql:query dataSource = "${snapshot}" var = "cityresult">
-					select * from citymaster;
-				</sql:query>
-				<sql:query dataSource = "${snapshot}" var = "locationresult">
-					select * from locationmaster;
-				</sql:query>
-				
-				
-			    <label>Select State:</label> 
-			     <form:select path = "state">
-					<c:forEach var ="row" items = "${result.rows}">
-						<form:option value = "${row.stateid}">${row.state}</form:option>
-					</c:forEach>
-				</form:select>
-			      </div>
-			      <div class="col-3">
-	    		
-			    <label>Select City:</label> 
-			       <form:select path = "city">
-					<c:forEach var ="row" items = "${cityresult.rows}">
-						<form:option value = "${row.cityid}">${row.city}</form:option>
-					</c:forEach>
-				</form:select>
-			      </div>
-			      <div class="col-3">
-	    		
-			    <label>Select Location:</label> 
-			       <form:select path = "location">
-					<c:forEach var ="row" items = "${locationresult.rows}">
-						<form:option value = "${row.locationid}">${row.location}</form:option>
-					</c:forEach>
-					</form:select>
-			      </div>
-			    
-    		</div>
-    		<div class="row" style="padding-top: 40px;">
-    			<div class="col-5">
-    				
-    			</div>
-    			<div class="col-1">
-    				<input type="submit" name="">
-    			</div>
-    			<div class="col-4">
-    				
-    			</div>
-    		</div>
+    		<div style="background-color: rgba(0,0,0, .3);">
+            <div class="row" style="padding-top: 10px; margin-top:10px;">
+                <div class="col-5">
+                    
+                </div>
+                <div class="col-3">
+                    <p style="font-size:1.5em;"><label>Select location</label></p>  
+                </div>
+                <div class="col-4">
+                    
+                </div>
+            </div>
+            <div class="row" ">
+                <div class="col-2">
+                    
+                </div>
+                <div class="col-3">
+                
+                <sql:setDataSource var = "snapshot" driver = "org.postgresql.Driver" 
+                    url = "jdbc:postgresql://testnear.cqvriimggiec.ap-south-1.rds.amazonaws.com:5432/AQIDetail"
+                    user = "abhi"  password = "12345678"/>
+                <sql:query dataSource = "${snapshot}" var = "result">
+                    select * from statemaster;
+                </sql:query>
+                <sql:query dataSource = "${snapshot}" var = "cityresult">
+                    select * from citymaster;
+                </sql:query>
+                <sql:query dataSource = "${snapshot}" var = "locationresult">
+                    select * from locationmaster;
+                </sql:query>
+                
+                
+                <label>Select State:</label> 
+                 <form:select path = "state">
+                    <c:forEach var ="row" items = "${result.rows}">
+                        <form:option value = "${row.stateid}">${row.state}</form:option>
+                    </c:forEach>
+                </form:select>
+                  </div>
+                  <div class="col-3">
+                
+                <label>Select City:</label> 
+                   <form:select path = "city">
+                    <c:forEach var ="row" items = "${cityresult.rows}">
+                        <form:option value = "${row.cityid}">${row.city}</form:option>
+                    </c:forEach>
+                </form:select>
+                  </div>
+                  <div class="col-3">
+                
+                <label>Select Location:</label> 
+                   <form:select path = "location">
+                    <c:forEach var ="row" items = "${locationresult.rows}">
+                        <form:option value = "${row.locationid}">${row.location}</form:option>
+                    </c:forEach>
+                    </form:select>
+                  </div>
+                
+            </div>
+            <div class="row" style="padding-top: 20px;  padding-bottom: 20px;">
+                <div class="col-5">
+                    
+                </div>
+                <div class="col-1">
+                    <input type="submit" name="">
+                </div>
+                <div class="col-4">
+                    
+                </div>
+            </div>
+            </div>
+    			
     			
     	</div>       
        </form:form> 

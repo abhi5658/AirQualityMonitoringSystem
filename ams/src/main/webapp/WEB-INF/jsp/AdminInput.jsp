@@ -36,8 +36,6 @@
             <div class="navbar-brand"  style="padding-left: 80px;">${user.username}</div>
           </li>
         </ul>
-        <!--   <a href="#"><button class="btn-change7" type="submit" disabled="disabled">${user.username}</button></a>
-          <a href="search"><button class="btn-change7" type="submit">Search</button></a> -->
           <a href="logout"><button class="btn-change7" type="button" data-target="#loginModal" data-toggle="modal">Logout</button></a>
         	<c:url var="noti" value="/getNotification"/>
         	<a href="${noti}"><button class="btn-change8" type="button">Noti</button></a>

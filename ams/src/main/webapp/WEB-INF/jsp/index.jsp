@@ -74,18 +74,18 @@ $(document).ready(function(){
  	-->
  	
     </head>
-    <body onload="return notifyMe()" id="bd">
-  	
-  
+  	<body>
       <!-- <h1>Hello, world!</h1> -->
       <div class="bg">
 		<nav class="w3-panel w3-card-4 navbar navbar-toggleable-md navbar-inverse" style="background-color: none; margin: 2px 0 2px 0; padding: 3px 0 3px 0;">
-         
+         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
           <a class="navbar-brand" href="#" style="padding-left: 80px;">AMS</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <c:if test="${!empty userType}">
 		  	<div class="navbar-brand"  style="padding-left: 80px;">${user.username}</div>
           </c:if>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
              <!--   <a class="nav-link" href="registerForm">Sign Up <span class="sr-only">(current)</span></a> -->

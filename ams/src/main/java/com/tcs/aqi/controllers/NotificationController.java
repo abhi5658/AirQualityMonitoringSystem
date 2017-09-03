@@ -9,26 +9,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-@SessionAttributes({"user","userType","message","noti"})
+@SessionAttributes({ "user", "userType", "message", "noti" })
 @Scope("session")
 @Controller
 public class NotificationController {
 
 	/*
-	 @ModelAttribute("noti")
-	public void noti(){
-		
-		ModelMap model= new ModelMap("index");
-		model.addAttribute("noti","1st noti");
-		System.out.println("inside noti");
-		return;		
-	}*/
-	
-	@RequestMapping(value="/getNotification",method=RequestMethod.GET)
-	public String getNotiList(){
-			//model.addAttribute("noti","1st noti");
-			System.out.println("\n\ninside getNoti\n\n");
-			return "redirect:/";
+	 * @ModelAttribute("noti") public void noti(){
+	 * 
+	 * ModelMap model= new ModelMap("index");
+	 * model.addAttribute("noti","1st noti"); System.out.println("inside noti");
+	 * return; }
+	 */
+
+	@RequestMapping(value = "/getNotification", method = RequestMethod.GET)
+	public String getNotiList() {
+		// model.addAttribute("noti","1st noti");
+		System.out.println("\n\ninside getNoti\n\n");
+		return "Notification";
 	}
-	 
+
 }

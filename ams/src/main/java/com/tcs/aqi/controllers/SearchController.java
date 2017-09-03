@@ -3,9 +3,10 @@ import com.google.gson.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -86,14 +87,29 @@ public class SearchController {
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		Testing testing = (Testing)context.getBean("testing");
 		System.out.println("Date: "+scl.getTodate()+"  "+scl.getFromdate());
-		Pollutant pollutant = testing.dateAqi(scl.getState(), scl.getCity(), scl.getLocation(), Date.valueOf(LocalDate.now()),scl.getTodate(),scl.getFromdate());
+		Pollutant pollutant = testing.dateAqi(scl.getState(), scl.getCity(), scl.getLocation(), java.sql.Date.valueOf(LocalDate.now()),scl.getTodate(),scl.getFromdate());
 		model.addAttribute("airQuality",pollutant);
 		
 		 Gson gson = new Gson();
          Map<String, String> chartobj = new HashMap<String, String>();
-         
+         Date todate  = scl.getTodate();
+         Date fromdate = scl.getFromdate();
+         if(todate.compareTo(fromdate)==0){
+        	 todate = java.sql.Date.valueOf(LocalDate.now());
+        	 Calendar cal = Calendar.getInstance();
+        	 cal.setTime(new Date());
+        	 cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH));
+        	 todate = cal.getTime();
+        	 // substract 7 days
+        	 // If we give 7 there it will give 8 days back
+        	 cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH)-4);
+
+        	 // convert to date
+        	 fromdate = cal.getTime();
+        	 
+         }
          chartobj.put("caption", "AQI values");
-         chartobj.put("subCaption" , scl.getTodate()+"  to  "+scl.getFromdate());
+         chartobj.put("subCaption" , fromdate+"  to  "+todate);
          chartobj.put("xaxisname" , "dates");
          chartobj.put("yaxisname" ,"AQI");
          chartobj.put("showValues" ,"1");
