@@ -126,10 +126,10 @@ th {
 				<table class="table" align="center">
 					<tr id="header">
 						<th>Date</th>
-						<th align="center">Location</th>
-						<th align="center">City</th>
-						<th align="center">State</th>
-						<th align="center">AQI</th>
+						<th align="center" style="border-top:0px;">Location</th>
+						<th align="center" style="border-top:0px;">City</th>
+						<th align="center" style="border-top:0px;">State</th>
+						<th align="center" style="border-top:0px;">AQI</th>
 					</tr>
 					<c:forEach var="row" items="${result.rows}">
 						<tr id="row">

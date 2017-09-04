@@ -45,20 +45,14 @@ public class AdminController {
 	
 	@RequestMapping(value = "/adminInput")
 	public String adminInput (ModelMap model){
-	//	String userType= (String)model.get("userType");
-	//	System.out.println(userType);
-		
-	//	if(userType!=null && userType.equals("admin")){
-			return "AdminInput";
-	//	}else
-	//		return "redirect:/";
+	return "AdminInput";
 	}
 	
 	@RequestMapping(value = "/addscl")
 	public String addscl(ModelMap model){
-		//String userType= (String)model.get("userType");
-		//System.out.println(userType);
-		
+		// String userType= (String)model.get("userType");
+		// System.out.println(userType);
+	
 		//if(userType!=null && userType.equals("admin")){
 			model.addAttribute("command",new SCL());
 			return "AddSCL";

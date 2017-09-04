@@ -1,7 +1,7 @@
 package com.tcs.aqi.beans;
 
 public class UserDetail {
-	private String fName,lName,state,city,location,email,password;
+	private String fName, lName, state, city, location, email, password;
 
 	public String getfName() {
 		return fName;
@@ -10,7 +10,7 @@ public class UserDetail {
 	public void setfName(String fName) {
 		this.fName = fName;
 	}
-	
+
 	public String getlName() {
 		return lName;
 	}

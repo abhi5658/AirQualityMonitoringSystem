@@ -19,23 +19,14 @@ public class cronJob {
 	Testing testing = (Testing) context.getBean("testing");
 	int value = 5;
 
-	// @Scheduled(cron="* */1 * * * ?")
-	@Scheduled(cron = "0 0/15 * ? * *")
+	// @Scheduled(cron="* */1 * * * ?")//every 1 minutes
+	@Scheduled(cron = "0 0/15 * ? * *") // every 15 minutes
 	public void demoServiceMethod() {
 		System.out.println("cron.............................................");
 		testing.addCron();
 		System.out.println("City : done.....................");
-		/*
-		 * Date date = java.sql.Date.valueOf(LocalDate.now()); boolean check =
-		 * testing.notification(Date.valueOf(LocalDate.now()));
-		 * 
-		 * RequestController req= new RequestController(); if(!check){ //
-		 * req.noti(); System.out.println("check"); }else
-		 * System.out.println(date); /* System.out.
-		 * println("+-+-+-+-+----Method executed. Current time is :: "+ new
-		 * java.util.Date()+"------+-+-+-+"); testing.addCron(date,value);
-		 * value++; System.out.println("Done entering into database.......");
-		 */}
+
+	}
 }
 /*
  * Keep an eye at the console(It will make you understand what's happening) wait

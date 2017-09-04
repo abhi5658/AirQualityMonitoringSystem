@@ -12,7 +12,6 @@ public class NotificationDeatailMapper implements RowMapper<NotificationDetail> 
 
 	@Override
 	public NotificationDetail mapRow(ResultSet rs, int arg1) throws SQLException {
-		// TODO Auto-generated method stub
 		NotificationDetail nd = new NotificationDetail();
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		Testing testing = (Testing) context.getBean("testing");

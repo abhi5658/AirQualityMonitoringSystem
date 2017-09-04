@@ -14,14 +14,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 public class NotificationController {
 
-	/*
-	 * @ModelAttribute("noti") public void noti(){
-	 * 
-	 * ModelMap model= new ModelMap("index");
-	 * model.addAttribute("noti","1st noti"); System.out.println("inside noti");
-	 * return; }
-	 */
-
 	@RequestMapping(value = "/getNotification", method = RequestMethod.GET)
 	public String getNotiList() {
 		// model.addAttribute("noti","1st noti");

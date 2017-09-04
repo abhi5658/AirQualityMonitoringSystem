@@ -16,77 +16,75 @@ import com.tcs.aqi.beans.Admin;
 import com.tcs.aqi.beans.UserDetail;
 import com.tcs.aqi.database.Testing;
 
-@SessionAttributes({"user","userType","message","noti"})
+@SessionAttributes({ "user", "userType", "message", "noti" })
 @Scope("session")
 @Controller
 public class LoginController {
 
 	@RequestMapping(value = "/registerForm")
-	public String registrationForm(ModelMap model){
-		
-		//String str= (String)model.get("userType");
-		//if(str==null || str==""){
-			model.addAttribute("command",new UserDetail());
-			return "RegistrationForm";
-		//}else
-			//return "redirect:/";
+	public String registrationForm(ModelMap model) {
+
+		// String str= (String)model.get("userType");
+		// if(str==null || str==""){
+		model.addAttribute("command", new UserDetail());
+		return "RegistrationForm";
+		// }else
+		// return "redirect:/";
 	}
-	
+
 	@RequestMapping(value = "/addUser")
-	public String addUser(@ModelAttribute("user_") UserDetail user_, ModelMap model){
-		
+	public String addUser(@ModelAttribute("user_") UserDetail user_, ModelMap model) {
+
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Testing testing = (Testing)context.getBean("testing");
-		boolean exist = testing.addUser(user_.getfName(),user_.getlName(),user_.getEmail().toLowerCase(),user_.getPassword(),user_.getState().toLowerCase(),user_.getCity().toLowerCase(),user_.getLocation().toLowerCase());
-		if(exist){
-			model.addAttribute("message","userExists");
-		}else
-			model.addAttribute("message","sign up successfull");
-		return "redirect:/";	
+		Testing testing = (Testing) context.getBean("testing");
+		boolean exist = testing.addUser(user_.getfName(), user_.getEmail().toLowerCase(), user_.getPassword(),
+				user_.getState().toUpperCase(), user_.getCity().toUpperCase(), user_.getLocation().toUpperCase());
+		if (exist) {
+			model.addAttribute("message", "userExists");
+		} else
+			model.addAttribute("message", "sign up successfull");
+		return "redirect:/";
 	}
-	
-	@RequestMapping(value = "/admininput",method = RequestMethod.GET)
-	public String adminLogin(@ModelAttribute("adminDetail") Admin adminDetail,ModelMap model){
-		
-		System.out.println(adminDetail.getUsername()+" "+adminDetail.getPassword());
+
+	@RequestMapping(value = "/admininput", method = RequestMethod.GET)
+	public String adminLogin(@ModelAttribute("adminDetail") Admin adminDetail, ModelMap model) {
+
+		System.out.println(adminDetail.getUsername() + " " + adminDetail.getPassword());
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Testing testing = (Testing)context.getBean("testing");
-		boolean check = testing.checkAdmin(adminDetail.getUsername(),adminDetail.getPassword());
-		if (check){
-			
-			model.addAttribute("userType","admin");
+		Testing testing = (Testing) context.getBean("testing");
+		boolean check = testing.checkAdmin(adminDetail.getUsername(), adminDetail.getPassword());
+		if (check) {
+
+			model.addAttribute("userType", "admin");
 			model.addAttribute("user", adminDetail);
-			return "redirect:/adminInput";	
-		}
-		else{
-			model.addAttribute("message","Invalid Credentials!!! Please Try Again");
+			return "redirect:/adminInput";
+		} else {
+			model.addAttribute("message", "Invalid Credentials!!! Please Try Again");
 			return "redirect:/";
 		}
 	}
-	
+
 	@RequestMapping(value = "/userLogin")
-	public String userLogin(@ModelAttribute("adminDetail") Admin adminDetail, ModelMap model){
-		
-		System.out.println(adminDetail.getUsername()+" "+adminDetail.getPassword());
+	public String userLogin(@ModelAttribute("adminDetail") Admin adminDetail, ModelMap model) {
+
+		System.out.println(adminDetail.getUsername() + " " + adminDetail.getPassword());
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		Testing testing = (Testing)context.getBean("testing");
-		boolean check = testing.checkUser(adminDetail.getUsername(),adminDetail.getPassword());
-		if (check){
-			model.addAttribute("userType","user");
-			model.addAttribute("user",adminDetail);
+		Testing testing = (Testing) context.getBean("testing");
+		boolean check = testing.checkUser(adminDetail.getUsername(), adminDetail.getPassword());
+		if (check) {
+			model.addAttribute("userType", "user");
+			model.addAttribute("user", adminDetail);
 			return "redirect:/";
-		}
-		else{
-			model.addAttribute("message","Invalid Credentials!!! Please Try Again");
+		} else {
+			model.addAttribute("message", "Invalid Credentials!!! Please Try Again");
 			return "redirect:/";
 		}
 	}
-	
-	@RequestMapping(value = "/logout",method =  RequestMethod.GET)
-	public String logOut(ModelMap model, SessionStatus status)
-	{
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logOut(ModelMap model, SessionStatus status) {
 		status.setComplete();
 		return "redirect:/";
 	}
- 
+
 }

@@ -13,17 +13,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport"content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<c:url value = "/resources/css/search.css"/>">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>View Air Quality</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value = "/resources/css/search.css"/>">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
-	<!-- <h1>Hello, world!</h1> -->
-
 	<sql:setDataSource var="snapshot" driver="org.postgresql.Driver"
 		url="jdbc:postgresql://testnear.cqvriimggiec.ap-south-1.rds.amazonaws.com:5432/AQIDetail"
 		user="abhi" password="12345678" />
@@ -37,7 +39,9 @@
             select * from locationmaster;
           </sql:query>
 	<div class="bg">
-		<nav class="w3-panel w3-card-4 navbar navbar-toggleable-md navbar-inverse" style="background-color: none; margin: 2px 0 2px 0; padding: 3px 0 3px 0;">
+		<nav
+			class="w3-panel w3-card-4 navbar navbar-toggleable-md navbar-inverse"
+			style="background-color: none; margin: 2px 0 2px 0; padding: 3px 0 3px 0;">
 		<button class="navbar-toggler navbar-toggler-right" type="button"
 			data-toggle="collapse" data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -63,8 +67,8 @@
 			</c:if>
 			<c:url var="logout" value="/logout" />
 			<a href="${logout}"><button class="btn-change7" type="button">Logout</button></a>
-			<c:url var="noti" value="/getNotification"/>
-        	<a href="${noti}"><button class="btn-change8" type="button">Noti</button></a>
+			<c:url var="noti" value="/getNotification" />
+			<a href="${noti}"><button class="btn-change8" type="button">Noti</button></a>
 		</div>
 		</nav>
 		<div class="main-name w3-panel w3-card">
@@ -103,17 +107,17 @@
 									</form:select></td>
 							</tr>
 							<tr>
-								<td>Range(Optional):</td>
+								<td style="padding-bottom:0px;">Range(Optional) :</td>
 							</tr>
 							<tr>
 								<td>Start Date:</td>
 								<td><form:input path="fromdate" type="date"
-										value="1990-01-01" /></td>
+										value="2000-01-01" /></td>
 							</tr>
 							<tr>
 								<td>End Date:</td>
 								<td><form:input path="todate" type="date"
-										value="1990-01-01" /></td>
+										value="2000-01-01" /></td>
 							</tr>
 							<tr>
 								<td colspan="2"><input type="submit" value="Submit"

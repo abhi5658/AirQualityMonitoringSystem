@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<title>Air Quality</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
@@ -124,12 +124,12 @@
 		</div>
 		</nav>
 		<div class="w3-panel w3-card-4"
-			Style="margin: 5% 10% 5% 10%; padding:1% 0% 0% 0%;">
+			Style="margin: 5% 10% 5% 10%; padding: 1% 0% 0% 0%;">
 			<div class="row">
-				<div id="chart-container-for-conc" class="col-sm-6" style="padding:5%;">Loading
-					Concentration...</div>
-				<div id="chart-container-for-AQI" class="col-sm-6" style="padding:5%;">Loading
-					AQI...</div>
+				<div id="chart-container-for-conc" class="col-sm-6"
+					style="padding: 5%;">Loading Concentration...</div>
+				<div id="chart-container-for-AQI" class="col-sm-6"
+					style="padding: 5%;">Loading AQI...</div>
 			</div>
 
 		</div>

@@ -20,11 +20,6 @@ public class Testing {
 		jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
 
-	/*
-	 * public void insert (String state,String city){ String SQL =
-	 * "insert into demo values(?,?)";
-	 * jdbcTemplateObject.update(SQL,state,city); return; }
-	 */
 	public void feedDatabse(String state, String city, String location, Date date, double pm10, double pm2dot5,
 			double no2, double o3, double co, double so2, double nh3, double pb, double AQI) {
 		String str = "select count(*) from aqitable where stateid = ? and cityid = ? and locationid = ? and date = ?";
@@ -50,20 +45,6 @@ public class Testing {
 			return false;
 	}
 
-	/*
-	 * public Pollutant dateAqi (String state,String city,String location,Date
-	 * date){ String str =
-	 * "select * from aqitable where stateid = ? and cityid = ? and locationid = ? and date <= ?"
-	 * ; //Pollutant pollutant = jdbcTemplateObject.queryForObject(str,new
-	 * Object[]{state,city,location,date} ,new dateAqiMapper()); Pollutant
-	 * pollutant = jdbcTemplateObject.queryForObject(str,new
-	 * Object[]{state,city,location,date},new dateAqiMapper());
-	 * System.out.println(pollutant.getDateAqi()); ArrayList<Date> list =new
-	 * ArrayList<Date>(pollutant.getDateAqi().keySet()); Collections.sort(list);
-	 * Collections.reverse(list); //Collections.
-	 * System.out.println("pm10: "+pollutant.getpm10());
-	 * pollutant.setDate(list); return pollutant; }
-	 */
 	public Pollutant dateAqi(String state, String city, String location, Date date, Date todate, Date fromdate) {
 		System.out.println("inside dateaqi function");
 		Pollutant pollutant;
@@ -125,11 +106,7 @@ public class Testing {
 		String cityid = (String) jdbcTemplateObject.queryForObject("select cityid from citymaster where city = ?",
 				new Object[] { city }, String.class);
 		int locationrows = jdbcTemplateObject.queryForObject("select count(*) from locationmaster where location = ?",
-				new Object[] { location }, Integer.class);// .queryForInt("select
-															// count(*) from
-															// locationmaster
-															// where location =
-															// ?", location);
+				new Object[] { location }, Integer.class);
 		if (locationrows == 0) {
 			jdbcTemplateObject.update("insert into locationmaster (stateid,cityid,location) values (?,?,?)", stateid,
 					cityid, location);
@@ -138,20 +115,40 @@ public class Testing {
 		return true;
 	}
 
-	public boolean addUser(String fName, String lName, String email, String password, String state, String city,
-			String location) {
+	public boolean addUser(String fName, String email, String password, String state, String city, String location) {
 
 		int check = jdbcTemplateObject.queryForObject("select count(*) from userdetail where email = ?",
-				new Object[] { email }, Integer.class);// .queryForInt("select
-														// count(*) from
-														// userdetail where
-														// email = ?", email);
+				new Object[] { email }, Integer.class);
 		if (check > 0)
 			return true;
 		else {
+			int staterows = jdbcTemplateObject.queryForObject("select count(*) from statemaster where state = ?",
+					new Object[] { state }, Integer.class);
+			if (staterows == 0) {
+				jdbcTemplateObject.update("insert into statemaster (state) values (?)", state);
+			}
+			String stateid = (String) jdbcTemplateObject.queryForObject(
+					"select stateid from statemaster where state = ?", new Object[] { state }, String.class);
+			int cityrows = jdbcTemplateObject.queryForObject(
+					"select count(*) from citymaster where city = ? and stateid = ?", new Object[] { city, stateid },
+					Integer.class);
+			if (cityrows == 0) {
+				jdbcTemplateObject.update("insert into citymaster (stateid,city) values (?,?)", stateid, city);
+			}
+			String cityid = (String) jdbcTemplateObject.queryForObject("select cityid from citymaster where city = ?",
+					new Object[] { city }, String.class);
+			int locationrows = jdbcTemplateObject.queryForObject(
+					"select count(*) from locationmaster where location = ?", new Object[] { location }, Integer.class);
+			if (locationrows == 0) {
+				jdbcTemplateObject.update("insert into locationmaster (stateid,cityid,location) values (?,?,?)",
+						stateid, cityid, location);
+			}
+			String locationid = (String) jdbcTemplateObject.queryForObject(
+					"select locationid from locationmaster where location = ?", new Object[] { location },
+					String.class);
 			jdbcTemplateObject.update(
-					"INSERT INTO userdetail (fname, lname, email, password, state, city, location) VALUES (?, ?, ?, ?, ?, ?, ?);",
-					fName, lName, email, password, state, city, location);
+					"INSERT INTO userdetail (name, email, password, stateid, cityid, locationid) VALUES (?, ?, ?, ?, ?, ?);",
+					fName, email, password, stateid, cityid, locationid);
 			return false;
 		}
 	}
@@ -171,11 +168,6 @@ public class Testing {
 		NotificationDetail nd = jdbcTemplateObject.queryForObject(
 				"select date,aqi,stateid,cityid,locationid from aqitable where aqi > ?", new Object[] { 120 },
 				new NotificationDeatailMapper());
-		// jdbcTemplateObject.update("insert into notification
-		// values(?,?,?,?,?)", nd.getDate(), nd.getAqi(),
-		// nd.getState(), nd.getCity(), nd.getLocation());
-		// jdbcTemplateObject.update("insert into cronhere (date,value) values
-		// (?,?)",date,value);
 	}
 
 	public void addNotification(Date date, double aqi, String state, String city, String loc) {
@@ -184,10 +176,7 @@ public class Testing {
 
 	public boolean notification(Date date) {
 		int check = jdbcTemplateObject.queryForObject("select count(*) from aqitable where date = ?",
-				new Object[] { date }, Integer.class);// .queryForInt("select
-														// count(*) from
-														// userdetail where
-														// email = ?", email);
+				new Object[] { date }, Integer.class);
 		if (check > 0)
 			return true;
 		else
@@ -205,9 +194,7 @@ public class Testing {
 
 	public String getcity(String cityid) {
 		System.out.println("The cityid : " + cityid);
-		// NotificationDetail nd = jdbcTemplateObject.queryForObject("select *
-		// from citymaster where cityid = ?", new Object[]{cityid},new
-		// citymapper());
+
 		String city = (String) jdbcTemplateObject.queryForObject("select city from citymaster where cityid = ?",
 				new Object[] { cityid }, String.class);
 		System.out.println("The cityid : " + cityid);
