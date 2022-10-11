@@ -1,0 +1,6 @@
+remote_theme: pages-themes/leap-day@v0.2.0
+title: Air Quality Monitoring System
+description: A platform to monitor air quality accross regions based on data added to system
+show_downloads: false
+#plugins:
+#- jekyll-remote-theme # add this line to the plugins list if you already have one
